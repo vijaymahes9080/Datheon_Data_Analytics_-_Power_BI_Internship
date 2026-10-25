@@ -50,3 +50,8 @@ htmlcov/
 .DS_Store
 Thumbs.db
 desktop.ini
+
+# Scratch and temporary directories
+scratch/
+tmp/
+*.tmp

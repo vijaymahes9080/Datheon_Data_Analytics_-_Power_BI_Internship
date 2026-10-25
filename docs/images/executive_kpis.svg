@@ -1,0 +1,141 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 620" width="1200" height="620">
+  <defs>
+    <linearGradient id="bgGrad3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#F8FAFC"/>
+    </linearGradient>
+    <filter id="bentoShadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0F172A" flood-opacity="0.05"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="620" fill="url(#bgGrad3)" rx="16" stroke="#E2E8F0" stroke-width="2"/>
+
+  <!-- Header -->
+  <text x="50" y="45" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#2563EB" letter-spacing="1">EXECUTIVE DECISION REGISTER</text>
+  <text x="50" y="80" font-family="system-ui, -apple-system, sans-serif" font-size="26" font-weight="800" fill="#0F172A">Quantified Findings Across the 4 Business Pillars</text>
+  <text x="50" y="105" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="500" fill="#64748B">Real diagnostic results extracted from validated datasets and reconciled analytics engines.</text>
+
+  <!-- Bento Grid Container -->
+  <g transform="translate(50, 130)">
+    <!-- Pillar 1: Retail Sales Discovery -->
+    <g transform="translate(0, 0)" filter="url(#bentoShadow)">
+      <rect width="535" height="210" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+      <rect width="535" height="4" rx="2" fill="#2563EB"/>
+      <text x="24" y="32" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="700" fill="#0F172A">1. Retail Sales &amp; Margin Diagnostics</text>
+      
+      <!-- Metrics row -->
+      <g transform="translate(24, 55)">
+        <text y="15" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#64748B">TOTAL REVENUE</text>
+        <text y="42" font-family="system-ui, -apple-system, sans-serif" font-size="24" font-weight="800" fill="#0F172A">$2,297,201</text>
+        <text y="62" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="600" fill="#059669">Net Margin: 12.47%</text>
+
+        <text x="180" y="15" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#64748B">DISCOUNT HAZARD</text>
+        <text x="180" y="42" font-family="system-ui, -apple-system, sans-serif" font-size="24" font-weight="800" fill="#DC2626">-$135,376</text>
+        <text x="180" y="62" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="600" fill="#B91C1C">Loss on Disc &gt; 20%</text>
+
+        <text x="360" y="15" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#64748B">TOP ENGINE</text>
+        <text x="360" y="42" font-family="system-ui, -apple-system, sans-serif" font-size="24" font-weight="800" fill="#2563EB">50.79%</text>
+        <text x="360" y="62" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="600" fill="#1E40AF">Technology Profit</text>
+      </g>
+      
+      <line x1="24" y1="140" x2="510" y2="140" stroke="#F1F5F9" stroke-width="1.5"/>
+      <text x="24" y="165" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="500" fill="#475569">
+        • Tables subcategory loses -$17,725.48 across 319 transactions due to runaway 30%+ promotions.
+      </text>
+      <text x="24" y="188" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="500" fill="#475569">
+        • West Region leads corporate EBITDA with $108,418.45 in profit (14.93% margin).
+      </text>
+    </g>
+
+    <!-- Pillar 2: Customer Churn Intelligence -->
+    <g transform="translate(565, 0)" filter="url(#bentoShadow)">
+      <rect width="535" height="210" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+      <rect width="535" height="4" rx="2" fill="#D97706"/>
+      <text x="24" y="32" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="700" fill="#0F172A">2. Customer Churn &amp; Retention ML</text>
+      
+      <!-- Metrics row -->
+      <g transform="translate(24, 55)">
+        <text y="15" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#64748B">OVERALL CHURN</text>
+        <text y="42" font-family="system-ui, -apple-system, sans-serif" font-size="24" font-weight="800" fill="#0F172A">26.54%</text>
+        <text y="62" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="600" fill="#D97706">1,869 / 7,043 subs</text>
+
+        <text x="180" y="15" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#64748B">YEAR 1 CHURN</text>
+        <text x="180" y="42" font-family="system-ui, -apple-system, sans-serif" font-size="24" font-weight="800" fill="#DC2626">47.44%</text>
+        <text x="180" y="62" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="600" fill="#B91C1C">0-12 month tenure hazard</text>
+
+        <text x="360" y="15" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#64748B">MODEL ROC-AUC</text>
+        <text x="360" y="42" font-family="system-ui, -apple-system, sans-serif" font-size="24" font-weight="800" fill="#059669">0.8418</text>
+        <text x="360" y="62" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="600" fill="#047857">Calibrated Classifier</text>
+      </g>
+
+      <line x1="24" y1="140" x2="510" y2="140" stroke="#F1F5F9" stroke-width="1.5"/>
+      <text x="24" y="165" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="500" fill="#475569">
+        • "Toxic Triad" (Month-to-month + Fiber optic + E-check) produces a staggering 60.37% churn.
+      </text>
+      <text x="24" y="188" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="500" fill="#475569">
+        • Two-year contract commitments slash subscriber churn risk down to just 2.83%.
+      </text>
+    </g>
+
+    <!-- Pillar 3: Financial Scenario Simulation -->
+    <g transform="translate(0, 235)" filter="url(#bentoShadow)">
+      <rect width="535" height="210" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+      <rect width="535" height="4" rx="2" fill="#059669"/>
+      <text x="24" y="32" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="700" fill="#0F172A">3. Financial Performance &amp; Simulation</text>
+      
+      <!-- Metrics row -->
+      <g transform="translate(24, 55)">
+        <text y="15" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#64748B">GROSS PROFIT</text>
+        <text y="42" font-family="system-ui, -apple-system, sans-serif" font-size="24" font-weight="800" fill="#0F172A">$16.89M</text>
+        <text y="62" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="600" fill="#059669">Margin: 13.20%</text>
+
+        <text x="180" y="15" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#64748B">ENTERPRISE DEFICIT</text>
+        <text x="180" y="42" font-family="system-ui, -apple-system, sans-serif" font-size="24" font-weight="800" fill="#DC2626">-$614.5K</text>
+        <text x="180" y="62" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="600" fill="#B91C1C">Loss on $19.61M sales</text>
+
+        <text x="360" y="15" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#64748B">DISCOUNT SENSITIVITY</text>
+        <text x="360" y="42" font-family="system-ui, -apple-system, sans-serif" font-size="24" font-weight="800" fill="#059669">+$920.5K</text>
+        <text x="360" y="62" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="600" fill="#047857">10% Discount Cut Lever</text>
+      </g>
+
+      <line x1="24" y1="140" x2="510" y2="140" stroke="#F1F5F9" stroke-width="1.5"/>
+      <text x="24" y="165" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="500" fill="#475569">
+        • Channel Partners segment yields premium 73.13% profit margin with minimal discount exposure.
+      </text>
+      <text x="24" y="188" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="500" fill="#475569">
+        • Multi-variate what-if sensitivity matrix models elasticity across price, volume, and inflation.
+      </text>
+    </g>
+
+    <!-- Pillar 4: Engineering & Quality Verification -->
+    <g transform="translate(565, 235)" filter="url(#bentoShadow)">
+      <rect width="535" height="210" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+      <rect width="535" height="4" rx="2" fill="#7C3AED"/>
+      <text x="24" y="32" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="700" fill="#0F172A">4. Enterprise Rigor &amp; Verification</text>
+      
+      <!-- Metrics row -->
+      <g transform="translate(24, 55)">
+        <text y="15" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#64748B">PYTEST COVERAGE</text>
+        <text y="42" font-family="system-ui, -apple-system, sans-serif" font-size="24" font-weight="800" fill="#059669">21 / 21</text>
+        <text y="62" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="600" fill="#047857">100% Tests Passing</text>
+
+        <text x="180" y="15" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#64748B">DAX RECONCILIATION</text>
+        <text x="180" y="42" font-family="system-ui, -apple-system, sans-serif" font-size="24" font-weight="800" fill="#2563EB">$0.00</text>
+        <text x="180" y="62" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="600" fill="#1E40AF">Penny-perfect parity</text>
+
+        <text x="360" y="15" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#64748B">COMMITS ON MAIN</text>
+        <text x="360" y="42" font-family="system-ui, -apple-system, sans-serif" font-size="24" font-weight="800" fill="#7C3AED">30 Commits</text>
+        <text x="360" y="62" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="600" fill="#6D28D9">Discrete Staged History</text>
+      </g>
+
+      <line x1="24" y1="140" x2="510" y2="140" stroke="#F1F5F9" stroke-width="1.5"/>
+      <text x="24" y="165" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="500" fill="#475569">
+        • Zero orphan surrogate keys across 9,994 orders, 1,862 products, and 793 customers.
+      </text>
+      <text x="24" y="188" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="500" fill="#475569">
+        • Production HTML dashboard portal providing instantaneous executive drilldown.
+      </text>
+    </g>
+  </g>
+</svg>

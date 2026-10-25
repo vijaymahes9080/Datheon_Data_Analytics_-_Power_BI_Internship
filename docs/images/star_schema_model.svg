@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 640" width="1200" height="640">
+  <defs>
+    <linearGradient id="bgGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#F8FAFC"/>
+    </linearGradient>
+    <filter id="shadowBox" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0F172A" flood-opacity="0.06"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="640" fill="url(#bgGrad2)" rx="16" stroke="#E2E8F0" stroke-width="2"/>
+
+  <!-- Header -->
+  <text x="50" y="45" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#2563EB" letter-spacing="1">POWER BI RELATIONAL ARCHITECTURE</text>
+  <text x="50" y="80" font-family="system-ui, -apple-system, sans-serif" font-size="26" font-weight="800" fill="#0F172A">Enterprise Star Schema &amp; Dimensional Model</text>
+  <text x="50" y="105" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="500" fill="#64748B">Central FactSales table surrounded by 4 conforming dimensions with 1-to-many single-directional relationships.</text>
+
+  <!-- Connective Lines -->
+  <g stroke="#94A3B8" stroke-width="2" stroke-dasharray="4,4">
+    <line x1="260" y1="210" x2="440" y2="280"/>
+    <line x1="260" y1="470" x2="440" y2="400"/>
+    <line x1="940" y1="210" x2="760" y2="280"/>
+    <line x1="940" y1="470" x2="760" y2="400"/>
+  </g>
+
+  <!-- Central Fact Table -->
+  <g transform="translate(440, 160)" filter="url(#shadowBox)">
+    <rect width="320" height="420" rx="12" fill="#FFFFFF" stroke="#2563EB" stroke-width="2"/>
+    <rect width="320" height="45" rx="12" fill="#2563EB"/>
+    <rect y="35" width="320" height="10" fill="#2563EB"/>
+    <text x="20" y="28" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="800" fill="#FFFFFF">FactSales</text>
+    <text x="210" y="28" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="600" fill="#BFDBFE">9,994 Rows</text>
+    
+    <!-- Fields -->
+    <g transform="translate(20, 65)" font-family="system-ui, -apple-system, sans-serif" font-size="13">
+      <text y="15" font-weight="700" fill="#1E40AF">🔑 Row ID [PK]</text>
+      <text y="40" font-weight="500" fill="#475569">Order ID</text>
+      <text y="65" font-weight="700" fill="#059669">🔗 Order Date [FK -&gt; DimDate]</text>
+      <text y="90" font-weight="500" fill="#475569">Ship Date &amp; Ship Mode</text>
+      <text y="115" font-weight="700" fill="#059669">🔗 Customer ID [FK -&gt; DimCustomer]</text>
+      <text y="140" font-weight="700" fill="#059669">🔗 Postal Code [FK -&gt; DimGeography]</text>
+      <text y="165" font-weight="700" fill="#059669">🔗 Product ID [FK -&gt; DimProduct]</text>
+      <line x1="0" y1="180" x2="280" y2="180" stroke="#E2E8F0" stroke-width="1"/>
+      <text y="205" font-weight="700" fill="#0F172A">📊 Sales ($2,297,200.86)</text>
+      <text y="230" font-weight="700" fill="#0F172A">📊 Quantity (37,873 units)</text>
+      <text y="255" font-weight="700" fill="#DC2626">📊 Discount (0% - 80%)</text>
+      <text y="280" font-weight="700" fill="#059669">📊 Profit ($286,397.02)</text>
+      <text y="305" font-weight="500" fill="#475569">Profit Margin % (12.47%)</text>
+      <text y="330" font-weight="500" fill="#475569">Is Profitable Flag</text>
+    </g>
+  </g>
+
+  <!-- Dimension 1: DimProduct (Top Left) -->
+  <g transform="translate(50, 140)" filter="url(#shadowBox)">
+    <rect width="230" height="190" rx="10" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+    <rect width="230" height="35" rx="10" fill="#0F172A"/>
+    <rect y="25" width="230" height="10" fill="#0F172A"/>
+    <text x="15" y="23" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="700" fill="#FFFFFF">DimProduct (1,862 SKUs)</text>
+    
+    <g transform="translate(15, 55)" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#334155">
+      <text y="15" font-weight="700" fill="#2563EB">🔑 Product ID [PK]</text>
+      <text y="40">Category (Technology, Furn...)</text>
+      <text y="65">Sub-Category (Phones, Chairs...)</text>
+      <text y="90">Product Name</text>
+      <text y="115" font-weight="600" fill="#059669">Cardinality: 1 to Many [1:*]</text>
+    </g>
+  </g>
+
+  <!-- Dimension 2: DimCustomer (Bottom Left) -->
+  <g transform="translate(50, 390)" filter="url(#shadowBox)">
+    <rect width="230" height="190" rx="10" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+    <rect width="230" height="35" rx="10" fill="#0F172A"/>
+    <rect y="25" width="230" height="10" fill="#0F172A"/>
+    <text x="15" y="23" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="700" fill="#FFFFFF">DimCustomer (793 Users)</text>
+    
+    <g transform="translate(15, 55)" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#334155">
+      <text y="15" font-weight="700" fill="#2563EB">🔑 Customer ID [PK]</text>
+      <text y="40">Customer Name</text>
+      <text y="65">Segment (Consumer, Corp...)</text>
+      <text y="90">Total Historical Orders</text>
+      <text y="115" font-weight="600" fill="#059669">Cardinality: 1 to Many [1:*]</text>
+    </g>
+  </g>
+
+  <!-- Dimension 3: DimGeography (Top Right) -->
+  <g transform="translate(920, 140)" filter="url(#shadowBox)">
+    <rect width="230" height="190" rx="10" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+    <rect width="230" height="35" rx="10" fill="#0F172A"/>
+    <rect y="25" width="230" height="10" fill="#0F172A"/>
+    <text x="15" y="23" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="700" fill="#FFFFFF">DimGeography (631 Areas)</text>
+    
+    <g transform="translate(15, 55)" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#334155">
+      <text y="15" font-weight="700" fill="#2563EB">🔑 Postal Code [PK]</text>
+      <text y="40">City &amp; State</text>
+      <text y="65">Region (West, East, Central, S)</text>
+      <text y="90">Country (United States)</text>
+      <text y="115" font-weight="600" fill="#059669">Cardinality: 1 to Many [1:*]</text>
+    </g>
+  </g>
+
+  <!-- Dimension 4: DimDate (Bottom Right) -->
+  <g transform="translate(920, 390)" filter="url(#shadowBox)">
+    <rect width="230" height="190" rx="10" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+    <rect width="230" height="35" rx="10" fill="#0F172A"/>
+    <rect y="25" width="230" height="10" fill="#0F172A"/>
+    <text x="15" y="23" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="700" fill="#FFFFFF">DimDate (1,464 Days)</text>
+    
+    <g transform="translate(15, 55)" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#334155">
+      <text y="15" font-weight="700" fill="#2563EB">🔑 Date [PK]</text>
+      <text y="40">Year, Quarter, Month</text>
+      <text y="65">Fiscal Quarter &amp; Month-Year</text>
+      <text y="90">Day of Week &amp; IsWeekend</text>
+      <text y="115" font-weight="600" fill="#059669">Cardinality: 1 to Many [1:*]</text>
+    </g>
+  </g>
+</svg>
