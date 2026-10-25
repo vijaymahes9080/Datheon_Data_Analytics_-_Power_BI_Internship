@@ -1,0 +1,127 @@
+// ==============================================================================
+// CORPORATE FINANCIAL SAMPLE DAX MEASURES SPECIFICATION
+// Framework: RISK Methodology — Solution Development & Engineering
+// Author: Vijay Maheswari
+// Target Model: FinancialFact
+// ==============================================================================
+
+// ------------------------------------------------------------------------------
+// 1. STATUTORY ACCOUNTING & REVENUE MEASURES
+// ------------------------------------------------------------------------------
+
+[Total Gross Sales] = 
+SUM(FinancialFact[Gross Sales])
+// Format: Currency ($#,##0.00)
+// Description: Gross contractual transaction value before deductions.
+// Reconciled Python Value: $127,931,598.50 (Variance: $0.00)
+
+[Total Discounts] = 
+SUM(FinancialFact[Discounts])
+// Format: Currency ($#,##0.00)
+// Description: Cumulative promotional discounts granted.
+// Reconciled Python Value: $9,205,248.24 (Variance: $0.00)
+
+[Total Net Sales] = 
+SUM(FinancialFact[Sales])
+// Format: Currency ($#,##0.00)
+// Description: Statutory net commercial revenue recognized.
+// Reconciled Python Value: $118,726,350.26 (Variance: $0.00)
+
+[Total COGS] = 
+SUM(FinancialFact[COGS])
+// Format: Currency ($#,##0.00)
+// Description: Total direct cost of goods sold.
+// Reconciled Python Value: $101,832,648.00 (Variance: $0.00)
+
+[Total Operating Profit] = 
+SUM(FinancialFact[Profit])
+// Format: Currency ($#,##0.00)
+// Description: Net operational margin generated.
+// Reconciled Python Value: $16,893,702.26 (Variance: $0.00)
+
+[Total Units Sold] = 
+SUM(FinancialFact[Units Sold])
+// Format: Whole Number (#,##0)
+// Description: Total physical manufactured units delivered.
+// Reconciled Python Value: 1,125,806 units (Variance: 0)
+
+
+// ------------------------------------------------------------------------------
+// 2. FINANCIAL RATIOS & MARGIN DIAGNOSTICS
+// ------------------------------------------------------------------------------
+
+[Gross Profit Margin %] = 
+DIVIDE([Total Operating Profit], [Total Net Sales], 0)
+// Format: Percentage (0.00%)
+// Description: Operational gross profit margin percentage.
+// Reconciled Python Value: 14.23% (Variance: 0.00%)
+
+[COGS Ratio %] = 
+DIVIDE([Total COGS], [Total Net Sales], 0)
+// Format: Percentage (0.00%)
+// Description: Cost absorption ratio as percentage of net revenue.
+// Reconciled Python Value: 85.77% (Variance: 0.00%)
+
+[Effective Discount Rate %] = 
+DIVIDE([Total Discounts], [Total Gross Sales], 0)
+// Format: Percentage (0.00%)
+// Description: Realized discount percentage conceded on gross revenue.
+// Reconciled Python Value: 7.20% (Variance: 0.00%)
+
+[Average Net Unit Price] = 
+DIVIDE([Total Net Sales], [Total Units Sold], 0)
+// Format: Currency ($#,##0.00)
+// Description: Average net revenue captured per unit delivered.
+// Reconciled Python Value: $105.46 / unit (Variance: $0.00)
+
+[Average Unit COGS] = 
+DIVIDE([Total COGS], [Total Units Sold], 0)
+// Format: Currency ($#,##0.00)
+// Description: Average production and delivery cost per unit.
+// Reconciled Python Value: $90.45 / unit (Variance: $0.00)
+
+
+// ------------------------------------------------------------------------------
+// 3. PARAMETERIZED WHAT-IF SCENARIO SIMULATOR MEASURES
+// ------------------------------------------------------------------------------
+// Assumes What-If parameter tables:
+// 'Discount Shock Parameter'[Discount Shock Value] (e.g. -0.10 for -10% discount)
+// 'COGS Inflation Parameter'[COGS Shock Value]     (e.g. +0.05 for +5% cost increase)
+// 'Volume Growth Parameter'[Volume Shock Value]   (e.g. +0.08 for +8% unit expansion)
+
+[Simulated Units Sold] = 
+VAR VolShock = SELECTEDVALUE('Volume Growth Parameter'[Volume Shock Value], 0.0)
+RETURN
+    [Total Units Sold] * (1.0 + VolShock)
+
+[Simulated Gross Sales] = 
+VAR VolShock = SELECTEDVALUE('Volume Growth Parameter'[Volume Shock Value], 0.0)
+RETURN
+    [Total Gross Sales] * (1.0 + VolShock)
+
+[Simulated Discounts] = 
+VAR DiscShock = SELECTEDVALUE('Discount Shock Parameter'[Discount Shock Value], 0.0)
+VAR VolShock = SELECTEDVALUE('Volume Growth Parameter'[Volume Shock Value], 0.0)
+RETURN
+    [Total Discounts] * (1.0 + DiscShock) * (1.0 + VolShock)
+
+[Simulated Net Sales] = 
+[Simulated Gross Sales] - [Simulated Discounts]
+
+[Simulated COGS] = 
+VAR COGSShock = SELECTEDVALUE('COGS Inflation Parameter'[COGS Shock Value], 0.0)
+VAR VolShock = SELECTEDVALUE('Volume Growth Parameter'[Volume Shock Value], 0.0)
+RETURN
+    [Total COGS] * (1.0 + COGSShock) * (1.0 + VolShock)
+
+[Simulated Operating Profit] = 
+[Simulated Net Sales] - [Simulated COGS]
+
+[Simulated Profit Margin %] = 
+DIVIDE([Simulated Operating Profit], [Simulated Net Sales], 0)
+
+[Scenario Profit Variance $] = 
+[Simulated Operating Profit] - [Total Operating Profit]
+
+[Scenario Profit Variance %] = 
+DIVIDE([Scenario Profit Variance $], [Total Operating Profit], 0)
