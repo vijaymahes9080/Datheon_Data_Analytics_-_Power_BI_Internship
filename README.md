@@ -1,8 +1,8 @@
-# RISK V3 — Autonomous Business Analytics & Decision Intelligence Engine
+# RISK — Autonomous Business Analytics & Decision Intelligence Engine
 
-[![Python 3.12](https://img.shields.io/badge/Python-3.12-blue.svg)](https://www.python.org/)
-[![Pandas](https://img.shields.io/badge/Pandas-3.0-150458.svg)](https://pandas.pydata.org/)
-[![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-1.9-F7931E.svg)](https://scikit-learn.org/)
+[![Python](https://img.shields.io/badge/Python-Data%20Science-blue.svg)](https://www.python.org/)
+[![Pandas](https://img.shields.io/badge/Pandas-Analytics-150458.svg)](https://pandas.pydata.org/)
+[![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-Machine%20Learning-F7931E.svg)](https://scikit-learn.org/)
 [![Power BI](https://img.shields.io/badge/Power%20BI-Star%20Schema%20DAX-F2C811.svg)](https://powerbi.microsoft.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Tests: Passing](https://img.shields.io/badge/Tests-100%25%20Passing-success.svg)](tests/)
@@ -11,7 +11,7 @@
 
 ## Executive Overview
 
-**RISK V3** is an enterprise-grade, evidence-driven business analytics and decision intelligence platform. Engineered for senior leadership, business intelligence architects, and data strategists, it unifies retail sales diagnostics, customer retention modeling, financial scenario simulation, and star-schema Power BI reporting into a single reproducible framework.
+**RISK** is an enterprise-grade, evidence-driven business analytics and decision intelligence platform. Engineered for senior leadership, business intelligence architects, and data strategists, it unifies retail sales diagnostics, customer retention modeling, financial scenario simulation, and star-schema Power BI reporting into a single reproducible framework.
 
 The platform is constructed on the proprietary **RISK Methodology**:
 * **R — Reconnaissance & Requirements**: Strict schema auditing, missingness profiling, source provenance validation, and explicit business metric definitions.
@@ -25,7 +25,7 @@ The platform is constructed on the proprietary **RISK Methodology**:
 
 ```
 ┌────────────────────────────────────────────────────────────────────────────────────────┐
-│                        RISK V3 DECISION INTELLIGENCE PLATFORM                          │
+│                         RISK DECISION INTELLIGENCE PLATFORM                            │
 ├──────────────────────────┬──────────────────────────┬──────────────────────────────────┤
 │ Task 1: Retail Discovery │ Task 2: Power BI Model   │ Task 3: Churn & Retention        │
 │ • Superstore Sales       │ • Star Schema Design     │ • Telco Churn Cohorts            │
@@ -138,8 +138,8 @@ risk-decision-intelligence/
 ## Installation & Setup
 
 ### 1. Prerequisites
-* Python 3.10+ (Tested on Python 3.12.10)
-* Git 2.40+
+* Python runtime with standard data science stack
+* Git version control
 
 ### 2. Environment Setup
 ```bash
