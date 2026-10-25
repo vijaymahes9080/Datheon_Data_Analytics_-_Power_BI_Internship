@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RISK Decision Intelligence Platform — Executive Decision Portal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0e17;
+            --bg-secondary: #111827;
+            --bg-card: rgba(17, 24, 39, 0.7);
+            --border: rgba(255, 255, 255, 0.08);
+            --border-hover: rgba(59, 130, 246, 0.4);
+            --accent-blue: #3b82f6;
+            --accent-cyan: #06b6d4;
+            --accent-purple: #8b5cf6;
+            --accent-green: #10b981;
+            --accent-red: #ef4444;
+            --accent-amber: #f59e0b;
+            --text-primary: #f9fafb;
+            --text-secondary: #9ca3af;
+            --text-muted: #6b7280;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Glassmorphism Header */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(16px);
+            background: rgba(10, 14, 23, 0.85);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .brand-badge {
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan));
+            color: white;
+            font-weight: 800;
+            font-size: 0.85rem;
+            padding: 0.35rem 0.75rem;
+            border-radius: 8px;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .brand-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, #fff, #9ca3af);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        nav.tabs {
+            display: flex;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 0.35rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            font-family: inherit;
+            font-size: 0.9rem;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .tab-btn:hover {
+            color: var(--text-primary);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .tab-btn.active {
+            color: #fff;
+            background: var(--accent-blue);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+        }
+
+        /* Container & Grid */
+        main.content {
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .view-section {
+            display: none;
+            animation: fadeIn 0.3s ease-in-out forwards;
+        }
+
+        .view-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* KPI Banner Grid */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.25rem;
+            margin-bottom: 2rem;
+        }
+
+        .kpi-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 1.5rem;
+            backdrop-filter: blur(8px);
+            transition: all 0.25s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .kpi-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--border-hover);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+        }
+
+        .kpi-label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+
+        .kpi-value {
+            font-size: 1.85rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 0.35rem;
+        }
+
+        .kpi-delta {
+            font-size: 0.85rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        .delta-positive { color: var(--accent-green); }
+        .delta-negative { color: var(--accent-red); }
+        .delta-neutral { color: var(--accent-cyan); }
+
+        /* Two Column Layout */
+        .layout-2col {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 1024px) {
+            .layout-2col { grid-template-columns: 1fr; }
+        }
+
+        .chart-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 1.5rem;
+            overflow: hidden;
+        }
+
+        .chart-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chart-img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+
+        /* Findings List */
+        .finding-item {
+            background: rgba(255, 255, 255, 0.02);
+            border-left: 3px solid var(--accent-blue);
+            padding: 1rem 1.25rem;
+            margin-bottom: 1rem;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .finding-tag {
+            display: inline-block;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--accent-cyan);
+            margin-bottom: 0.35rem;
+        }
+
+        .finding-title {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: #fff;
+            margin-bottom: 0.35rem;
+        }
+
+        .finding-desc {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        /* Interactive Simulator */
+        .simulator-box {
+            background: linear-gradient(145deg, rgba(17, 24, 39, 0.9), rgba(30, 41, 59, 0.8));
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .sim-controls {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .sim-control-group {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 1.25rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+
+        .sim-control-label {
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        input[type="range"] {
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background: #374151;
+            outline: none;
+            accent-color: var(--accent-blue);
+        }
+
+        /* DAX Viewer */
+        .code-container {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            background: #05070d;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 1.25rem;
+            color: #e5e7eb;
+            overflow-x: auto;
+            max-height: 400px;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            border-top: 1px solid var(--border);
+            margin-top: 3rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="brand">
+            <span class="brand-badge">RISK Platform</span>
+            <div class="brand-title">Autonomous Decision Intelligence Engine</div>
+        </div>
+        <nav class="tabs">
+            <button class="tab-btn active" onclick="switchTab('retail')">1. Retail Sales</button>
+            <button class="tab-btn" onclick="switchTab('powerbi')">2. Power BI Model</button>
+            <button class="tab-btn" onclick="switchTab('churn')">3. Customer Churn</button>
+            <button class="tab-btn" onclick="switchTab('finance')">4. Financial Simulator</button>
+        </nav>
+    </header>
+
+    <main class="content">
+
+        <!-- ==================== TAB 1: RETAIL ==================== -->
+        <section id="retail" class="view-section active">
+            <div class="kpi-grid">
+                <div class="kpi-card">
+                    <div class="kpi-label">Total Net Revenue</div>
+                    <div class="kpi-value">$2,297,200.86</div>
+                    <div class="kpi-delta delta-positive">Across 5,009 unique customer orders</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Operating Profit</div>
+                    <div class="kpi-value">$286,397.02</div>
+                    <div class="kpi-delta delta-positive">12.47% Gross Operating Margin</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Average Order Value (AOV)</div>
+                    <div class="kpi-value">$458.61</div>
+                    <div class="kpi-delta delta-neutral">7.6 physical units per order</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Heavy Discount Losses (>20%)</div>
+                    <div class="kpi-value">-$135,376.06</div>
+                    <div class="kpi-delta delta-negative">-37.32% Margin on 1,393 line items</div>
+                </div>
+            </div>
+
+            <div class="layout-2col">
+                <div class="chart-box">
+                    <div class="chart-title">Monthly Sales Velocity Trajectory (2014 – 2017)</div>
+                    <img src="figures/retail_monthly_sales_trend.png" alt="Monthly Sales Trend" class="chart-img">
+                </div>
+                <div class="chart-box">
+                    <div class="chart-title">Key Executive Discoveries</div>
+                    <div class="finding-item">
+                        <span class="finding-tag">RET-01</span>
+                        <div class="finding-title">Discounts > 20% Destroy Profit</div>
+                        <div class="finding-desc">High-discount orders lost -$135.4K while 0% discount orders yielded +29.5% margin.</div>
+                    </div>
+                    <div class="finding-item" style="border-left-color: var(--accent-red);">
+                        <span class="finding-tag" style="color: var(--accent-red);">RET-02</span>
+                        <div class="finding-title">Tables Subcategory Chronic Drain</div>
+                        <div class="finding-desc">Tables incurred an aggregate -$17,725.48 net loss on $206.9K sales (-8.56% margin).</div>
+                    </div>
+                    <div class="finding-item" style="border-left-color: var(--accent-green);">
+                        <span class="finding-tag" style="color: var(--accent-green);">RET-04</span>
+                        <div class="finding-title">Technology Revenue Dominance</div>
+                        <div class="finding-desc">Technology generated 50.79% ($145.5K) of all corporate profits at a 17.39% margin.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="layout-2col">
+                <div class="chart-box">
+                    <div class="chart-title">Subcategory Sales Volume vs Net Operating Profit</div>
+                    <img src="figures/retail_category_revenue_profit.png" alt="Category Revenue & Profit" class="chart-img">
+                </div>
+                <div class="chart-box">
+                    <div class="chart-title">Discount Level vs Profit Realization ($)</div>
+                    <img src="figures/retail_discount_vs_profit_scatter.png" alt="Discount vs Profit Scatter" class="chart-img">
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== TAB 2: POWER BI ==================== -->
+        <section id="powerbi" class="view-section">
+            <div class="kpi-grid">
+                <div class="kpi-card">
+                    <div class="kpi-label">Relational Model Architecture</div>
+                    <div class="kpi-value">Star Schema</div>
+                    <div class="kpi-delta delta-positive">Kimball 3NF Normalized Standard</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Transactional Fact Records</div>
+                    <div class="kpi-value">9,994</div>
+                    <div class="kpi-delta delta-neutral">FactSales order-line grain</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Conforming Dimensions</div>
+                    <div class="kpi-value">4 Tables</div>
+                    <div class="kpi-delta delta-positive">Product (1.8K), Customer (793), Geo (631), Date (1.4K)</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Referential Integrity Audit</div>
+                    <div class="kpi-value">100.0%</div>
+                    <div class="kpi-delta delta-positive">Zero orphan foreign keys detected</div>
+                </div>
+            </div>
+
+            <div class="layout-2col">
+                <div class="chart-box">
+                    <div class="chart-title">Star Schema Relational Architecture</div>
+                    <p style="color: var(--text-secondary); margin-bottom: 1rem; font-size: 0.9rem;">
+                        The transactional fact table <code>FactSales</code> joins via single-direction 1:Many relationships to conforming dimension tables, completely eliminating bi-directional ambiguity and Cartesian join risks.
+                    </p>
+                    <div class="code-container">
+[FactSales] (9,994 rows)
+  ├── 1:M [Product ID]  ──> [DimProduct]   (1,862 SKUs)
+  ├── 1:M [Customer ID] ──> [DimCustomer]  (793 Accounts)
+  ├── 1:M [Postal Code] ──> [DimGeography] (631 Postal Codes)
+  ├── 1:M [Order Date]  ──> [DimDate]      (1,464 Days, Active)
+  └── 1:M [Ship Date]   ──> [DimDate]      (Inactive, USERELATIONSHIP)
+                    </div>
+                </div>
+                <div class="chart-box">
+                    <div class="chart-title">Core Production DAX Measures</div>
+                    <div class="code-container">
+// Total Sales Measure
+[Total Sales] = SUM(FactSales[Sales])
+
+// Profit Margin Measure
+[Profit Margin %] = DIVIDE([Total Profit], [Total Sales], 0)
+
+// Loss Leader Isolation
+[Negative Profit Loss] = 
+CALCULATE(
+    SUM(FactSales[Profit]),
+    FactSales[Profit] < 0
+)
+
+// Time Intelligence: Prior Year
+[Sales Prior Year] = 
+CALCULATE(
+    [Total Sales],
+    SAMEPERIODLASTYEAR(DimDate[Date])
+)
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== TAB 3: CHURN ==================== -->
+        <section id="churn" class="view-section">
+            <div class="kpi-grid">
+                <div class="kpi-card">
+                    <div class="kpi-label">Total Active Subscribers</div>
+                    <div class="kpi-value">7,043</div>
+                    <div class="kpi-delta delta-neutral">100% Eligible subscriber accounts</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Portfolio Churn Rate</div>
+                    <div class="kpi-value">26.54%</div>
+                    <div class="kpi-delta delta-negative">1,869 churned vs 5,174 retained</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Year 1 Hazard Rate (0–12m)</div>
+                    <div class="kpi-value">47.44%</div>
+                    <div class="kpi-delta delta-negative">Over 55% of all departures occur in Year 1</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">High-Risk Toxic Triad Rate</div>
+                    <div class="kpi-value">60.37%</div>
+                    <div class="kpi-delta delta-negative">Month-to-month + Fiber + Electronic check</div>
+                </div>
+            </div>
+
+            <div class="layout-2col">
+                <div class="chart-box">
+                    <div class="chart-title">12-Month Tenure Cohort Churn vs Retention Rates</div>
+                    <img src="figures/churn_tenure_cohort_curve.png" alt="Tenure Cohort Curve" class="chart-img">
+                </div>
+                <div class="chart-box">
+                    <div class="chart-title">Cross-Segment Churn Heatmap: Contract vs Payment</div>
+                    <img src="figures/churn_contract_payment_heatmap.png" alt="Contract Payment Heatmap" class="chart-img">
+                </div>
+            </div>
+
+            <div class="layout-2col">
+                <div class="chart-box">
+                    <div class="chart-title">Impact of Support & Service Combinations on Churn</div>
+                    <img src="figures/churn_service_combination_rates.png" alt="Service Combinations" class="chart-img">
+                </div>
+                <div class="chart-box">
+                    <div class="chart-title">Predictive Classifier ROC-AUC Curve (AUC = 0.842)</div>
+                    <img src="figures/churn_roc_auc_curve.png" alt="ROC AUC Curve" class="chart-img">
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== TAB 4: FINANCE ==================== -->
+        <section id="finance" class="view-section">
+            <div class="kpi-grid">
+                <div class="kpi-card">
+                    <div class="kpi-label">Total Commercial Revenue</div>
+                    <div class="kpi-value">$118.73M</div>
+                    <div class="kpi-delta delta-positive">$127.93M Gross Sales minus $9.21M Discounts</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Cost of Goods Sold (COGS)</div>
+                    <div class="kpi-value">$101.83M</div>
+                    <div class="kpi-delta delta-negative">85.77% COGS Absorption Ratio</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Operating Profit</div>
+                    <div class="kpi-value">$16.89M</div>
+                    <div class="kpi-delta delta-positive">14.23% Gross Operating Profit Margin</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Enterprise Contract Deficit</div>
+                    <div class="kpi-value">-$614,531</div>
+                    <div class="kpi-delta delta-negative">-3.13% Margin on $19.6M Enterprise sales</div>
+                </div>
+            </div>
+
+            <!-- Interactive What-If Scenario Simulator -->
+            <div class="simulator-box">
+                <div class="chart-title" style="margin-bottom: 0.5rem; font-size: 1.25rem;">
+                    Financial What-If Scenario Simulator
+                </div>
+                <p style="color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 0.9rem;">
+                    Adjust operational levers to model real-time sensitivity on Net Sales, COGS, and Operating Profit.
+                </p>
+
+                <div class="sim-controls">
+                    <div class="sim-control-group">
+                        <div class="sim-control-label">
+                            <span>Discount Policy Shock</span>
+                            <span id="discVal" style="color: var(--accent-cyan);">0%</span>
+                        </div>
+                        <input type="range" id="discRange" min="-20" max="20" value="0" step="1" oninput="updateSim()">
+                    </div>
+                    <div class="sim-control-group">
+                        <div class="sim-control-label">
+                            <span>COGS Inflation Shock</span>
+                            <span id="cogsVal" style="color: var(--accent-amber);">0%</span>
+                        </div>
+                        <input type="range" id="cogsRange" min="-10" max="20" value="0" step="1" oninput="updateSim()">
+                    </div>
+                    <div class="sim-control-group">
+                        <div class="sim-control-label">
+                            <span>Sales Volume Growth</span>
+                            <span id="volVal" style="color: var(--accent-green);">0%</span>
+                        </div>
+                        <input type="range" id="volRange" min="-15" max="25" value="0" step="1" oninput="updateSim()">
+                    </div>
+                </div>
+
+                <div class="kpi-grid" style="margin-bottom: 0;">
+                    <div class="kpi-card" style="background: rgba(0,0,0,0.3);">
+                        <div class="kpi-label">Simulated Net Sales</div>
+                        <div class="kpi-value" id="simSales">$118.73M</div>
+                        <div class="kpi-delta" id="simSalesDelta">Baseline: $118.73M</div>
+                    </div>
+                    <div class="kpi-card" style="background: rgba(0,0,0,0.3);">
+                        <div class="kpi-label">Simulated Operating Profit</div>
+                        <div class="kpi-value" id="simProfit" style="color: var(--accent-green);">$16.89M</div>
+                        <div class="kpi-delta" id="simProfitDelta">Variance: $0.00 (0.0%)</div>
+                    </div>
+                    <div class="kpi-card" style="background: rgba(0,0,0,0.3);">
+                        <div class="kpi-label">Simulated Gross Margin</div>
+                        <div class="kpi-value" id="simMargin">14.23%</div>
+                        <div class="kpi-delta" id="simMarginDelta">Baseline: 14.23%</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="layout-2col">
+                <div class="chart-box">
+                    <div class="chart-title">Customer Segment Volume vs Profit Margin (%)</div>
+                    <img src="figures/financial_segment_margin_matrix.png" alt="Segment Margins" class="chart-img">
+                </div>
+                <div class="chart-box">
+                    <div class="chart-title">Scenario Sensitivity Matrix (Discount vs COGS Shocks)</div>
+                    <img src="figures/financial_scenario_sensitivity_matrix.png" alt="Sensitivity Matrix" class="chart-img">
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        RISK Autonomous Business Analytics & Decision Intelligence Platform &bull; Engineered by Vijay Maheswari
+    </footer>
+
+    <script>
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.view-section').forEach(sec => sec.classList.remove('active'));
+
+            event.target.classList.add('active');
+            document.getElementById(tabId).classList.add('active');
+        }
+
+        const BASE_SALES = 118726350.26;
+        const BASE_GROSS = 127931598.50;
+        const BASE_DISC = 9205248.24;
+        const BASE_COGS = 101832648.00;
+        const BASE_PROFIT = 16893702.26;
+
+        function updateSim() {
+            const discP = parseFloat(document.getElementById('discRange').value) / 100.0;
+            const cogsP = parseFloat(document.getElementById('cogsRange').value) / 100.0;
+            const volP = parseFloat(document.getElementById('volRange').value) / 100.0;
+
+            document.getElementById('discVal').innerText = (discP >= 0 ? '+' : '') + Math.round(discP * 100) + '%';
+            document.getElementById('cogsVal').innerText = (cogsP >= 0 ? '+' : '') + Math.round(cogsP * 100) + '%';
+            document.getElementById('volVal').innerText = (volP >= 0 ? '+' : '') + Math.round(volP * 100) + '%';
+
+            const simGross = BASE_GROSS * (1.0 + volP);
+            const simDisc = BASE_DISC * (1.0 + discP) * (1.0 + volP);
+            const simSales = simGross - simDisc;
+            const simCogs = BASE_COGS * (1.0 + cogsP) * (1.0 + volP);
+            const simProfit = simSales - simCogs;
+            const simMargin = (simProfit / simSales) * 100.0;
+
+            const profitDelta = simProfit - BASE_PROFIT;
+            const profitDeltaPct = (profitDelta / BASE_PROFIT) * 100.0;
+
+            document.getElementById('simSales').innerText = '$' + (simSales / 1e6).toFixed(2) + 'M';
+            document.getElementById('simProfit').innerText = '$' + (simProfit / 1e6).toFixed(2) + 'M';
+            document.getElementById('simMargin').innerText = simMargin.toFixed(2) + '%';
+
+            const deltaEl = document.getElementById('simProfitDelta');
+            deltaEl.innerText = (profitDelta >= 0 ? '+$' : '-$') + Math.abs(profitDelta / 1e6).toFixed(2) + 'M (' + (profitDeltaPct >= 0 ? '+' : '') + profitDeltaPct.toFixed(1) + '%)';
+            deltaEl.className = 'kpi-delta ' + (profitDelta >= 0 ? 'delta-positive' : 'delta-negative');
+        }
+    </script>
+</body>
+</html>
