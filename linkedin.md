@@ -45,8 +45,9 @@ Here is what happened when we applied rigorous data intelligence to real busines
 
 📊 **Tech Stack**: Python | Pandas | Scikit-Learn | Power BI | DAX | Pytest | Jupyter Lab | Git
 
-Check out the full repository, code, star schema, and interactive portal:
-👉 GitHub: https://github.com/vijaymahes9080/Datheon_Data_Analytics_-_Power_BI_Internship
+Check out the full repository, code, star schema, and live interactive portal:
+👉 Live Web App: https://vijaymahes9080.github.io/Datheon_Data_Analytics_-_Power_BI_Internship/
+👉 GitHub Repo: https://github.com/vijaymahes9080/Datheon_Data_Analytics_-_Power_BI_Internship
 
 I’d love to hear your thoughts: How does your organization enforce margin protections against runaway sales discounting?
 

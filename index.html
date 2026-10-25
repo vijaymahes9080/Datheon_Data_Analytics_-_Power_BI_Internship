@@ -1,0 +1,1266 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RISK Decision Intelligence Platform — Executive Portal</title>
+    <meta name="description" content="Autonomous Business Analytics & Decision Intelligence Platform across Retail Discovery, Power BI Star Schema, Customer Retention ML, and Financial Scenario Simulation.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Light Theme (Default) */
+            --bg-page: #f8fafc;
+            --bg-surface: #ffffff;
+            --bg-card: #ffffff;
+            --bg-subtle: #f1f5f9;
+            --border-color: #e2e8f0;
+            --border-hover: #cbd5e1;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --text-subtle: #94a3b8;
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --primary-light: #eff6ff;
+            --success: #059669;
+            --success-light: #ecfdf5;
+            --warning: #d97706;
+            --warning-light: #fffbeb;
+            --danger: #dc2626;
+            --danger-light: #fef2f2;
+            --purple: #7c3aed;
+            --purple-light: #faf5ff;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
+            --font-main: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --font-code: 'JetBrains Mono', monospace;
+        }
+
+        [data-theme="dark"] {
+            --bg-page: #0b0f19;
+            --bg-surface: #111827;
+            --bg-card: #182234;
+            --bg-subtle: #1e293b;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --border-hover: rgba(59, 130, 246, 0.4);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --text-subtle: #64748b;
+            --primary: #3b82f6;
+            --primary-hover: #60a5fa;
+            --primary-light: rgba(59, 130, 246, 0.15);
+            --success: #10b981;
+            --success-light: rgba(16, 185, 129, 0.15);
+            --warning: #f59e0b;
+            --warning-light: rgba(245, 158, 11, 0.15);
+            --danger: #ef4444;
+            --danger-light: rgba(239, 68, 68, 0.15);
+            --purple: #8b5cf6;
+            --purple-light: rgba(139, 92, 246, 0.15);
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-page);
+            color: var(--text-main);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Top Navigation Header */
+        header.app-header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: var(--bg-surface);
+            border-bottom: 1px solid var(--border-color);
+            padding: 0.85rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .brand-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .brand-badge {
+            background: linear-gradient(135deg, var(--primary), #0284c7);
+            color: #ffffff;
+            font-weight: 800;
+            font-size: 0.85rem;
+            padding: 0.35rem 0.75rem;
+            border-radius: 8px;
+            letter-spacing: 0.05em;
+        }
+
+        .brand-text h1 {
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: var(--text-main);
+        }
+
+        .brand-text p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.45rem 0.9rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            border: 1px solid var(--border-color);
+            background: var(--bg-surface);
+            color: var(--text-main);
+            transition: all 0.2s ease;
+        }
+
+        .btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            background: var(--primary-light);
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: #ffffff;
+            border-color: var(--primary);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-hover);
+            color: #ffffff;
+        }
+
+        /* Tab Navigation Bar */
+        nav.tab-nav {
+            background-color: var(--bg-surface);
+            border-bottom: 1px solid var(--border-color);
+            padding: 0.5rem 2rem;
+            display: flex;
+            gap: 0.5rem;
+            overflow-x: auto;
+            scrollbar-width: thin;
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-family: var(--font-main);
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            cursor: pointer;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .tab-btn:hover {
+            color: var(--text-main);
+            background-color: var(--bg-subtle);
+        }
+
+        .tab-btn.active {
+            color: var(--primary);
+            background-color: var(--primary-light);
+        }
+
+        /* Main Content Container */
+        main.main-content {
+            max-width: 1360px;
+            margin: 1.5rem auto 3rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .workspace-panel {
+            display: none;
+            animation: fadeIn 0.25s ease-in-out forwards;
+        }
+
+        .workspace-panel.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* KPI Metric Cards Grid */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.25rem;
+            margin-bottom: 1.75rem;
+        }
+
+        .kpi-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 1.25rem 1.5rem;
+            box-shadow: var(--shadow-sm);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .kpi-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+        }
+
+        .kpi-card.blue::before { background-color: var(--primary); }
+        .kpi-card.red::before { background-color: var(--danger); }
+        .kpi-card.amber::before { background-color: var(--warning); }
+        .kpi-card.green::before { background-color: var(--success); }
+        .kpi-card.purple::before { background-color: var(--purple); }
+
+        .kpi-title {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            margin-bottom: 0.4rem;
+        }
+
+        .kpi-num {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 0.3rem;
+            line-height: 1.1;
+        }
+
+        .kpi-subtitle {
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .text-green { color: var(--success); }
+        .text-red { color: var(--danger); }
+        .text-amber { color: var(--warning); }
+        .text-blue { color: var(--primary); }
+
+        /* Card Panels & Containers */
+        .card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 1.5rem;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.25rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .card-tag {
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.25rem 0.65rem;
+            border-radius: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .tag-blue { background-color: var(--primary-light); color: var(--primary); }
+        .tag-green { background-color: var(--success-light); color: var(--success); }
+        .tag-amber { background-color: var(--warning-light); color: var(--warning); }
+        .tag-red { background-color: var(--danger-light); color: var(--danger); }
+        .tag-purple { background-color: var(--purple-light); color: var(--purple); }
+
+        /* 2-Column Grid Layout */
+        .grid-2col {
+            display: grid;
+            grid-template-columns: 1.6fr 1fr;
+            gap: 1.5rem;
+            align-items: start;
+        }
+
+        @media (max-width: 960px) {
+            .grid-2col { grid-template-columns: 1fr; }
+        }
+
+        .diagram-img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            background-color: #ffffff;
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* Findings & Key Points List */
+        .finding-item {
+            background-color: var(--bg-subtle);
+            border-left: 4px solid var(--primary);
+            padding: 1rem 1.25rem;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 0.85rem;
+        }
+
+        .finding-item.danger { border-left-color: var(--danger); }
+        .finding-item.success { border-left-color: var(--success); }
+        .finding-item.warning { border-left-color: var(--warning); }
+
+        .finding-title {
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--text-main);
+            margin-bottom: 0.25rem;
+        }
+
+        .finding-desc {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Interactive Simulator Components */
+        .simulator-box {
+            background-color: var(--bg-subtle);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .slider-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .slider-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 0.4rem;
+        }
+
+        .slider-input {
+            width: 100%;
+            accent-color: var(--primary);
+            cursor: pointer;
+        }
+
+        /* Code & Tables */
+        .code-box {
+            background-color: var(--bg-subtle);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1rem;
+            font-family: var(--font-code);
+            font-size: 0.85rem;
+            color: var(--text-main);
+            overflow-x: auto;
+            white-space: pre-wrap;
+            position: relative;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            font-size: 0.75rem;
+            padding: 0.25rem 0.5rem;
+        }
+
+        table.data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.88rem;
+            margin-top: 0.75rem;
+        }
+
+        table.data-table th, table.data-table td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        table.data-table th {
+            background-color: var(--bg-subtle);
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        /* Footer */
+        footer.app-footer {
+            background-color: var(--bg-surface);
+            border-top: 1px solid var(--border-color);
+            padding: 1.5rem 2rem;
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="app-header">
+        <div class="brand-container">
+            <div class="brand-badge">RISK</div>
+            <div class="brand-text">
+                <h1>Decision Intelligence Platform</h1>
+                <p>Autonomous Problem Solving Across Retail, Retention ML, Finance &amp; Power BI</p>
+            </div>
+        </div>
+        <div class="header-actions">
+            <button class="btn" id="themeToggleBtn" onclick="toggleTheme()">
+                <span id="themeIcon">🌙</span> <span id="themeLabel">Dark Mode</span>
+            </button>
+            <a href="https://github.com/vijaymahes9080/Datheon_Data_Analytics_-_Power_BI_Internship" target="_blank" class="btn btn-primary">
+                GitHub Repository ↗
+            </a>
+        </div>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <nav class="tab-nav">
+        <button class="tab-btn active" onclick="switchTab('overview')">📊 Overview &amp; Framework</button>
+        <button class="tab-btn" onclick="switchTab('retail')">🛒 Retail Discovery</button>
+        <button class="tab-btn" onclick="switchTab('powerbi')">🏛️ Power BI Star Schema</button>
+        <button class="tab-btn" onclick="switchTab('churn')">📉 Churn &amp; Retention ML</button>
+        <button class="tab-btn" onclick="switchTab('finance')">💼 Financial Simulator</button>
+        <button class="tab-btn" onclick="switchTab('audit')">📑 Data Quality &amp; Audit</button>
+        <button class="tab-btn" onclick="switchTab('showcase')">🚀 LinkedIn Showcase</button>
+    </nav>
+
+    <!-- Main Content Workspaces -->
+    <main class="main-content">
+
+        <!-- WORKSPACE 1: OVERVIEW -->
+        <section id="panel-overview" class="workspace-panel active">
+            <!-- Top Metric Banner -->
+            <div class="kpi-grid">
+                <div class="kpi-card blue">
+                    <div class="kpi-title">Retail Revenue Analyzed</div>
+                    <div class="kpi-num">$2.30M</div>
+                    <div class="kpi-subtitle text-green">9,994 Orders • 12.47% Net Margin</div>
+                </div>
+                <div class="kpi-card red">
+                    <div class="kpi-title">Discount Destruction</div>
+                    <div class="kpi-num">-$135.4K</div>
+                    <div class="kpi-subtitle text-red">Orders with Disc &gt; 20% (-37% Margin)</div>
+                </div>
+                <div class="kpi-card amber">
+                    <div class="kpi-title">Toxic Triad Churn Rate</div>
+                    <div class="kpi-num">60.37%</div>
+                    <div class="kpi-subtitle text-amber">Month-to-Month + Fiber + E-Check</div>
+                </div>
+                <div class="kpi-card green">
+                    <div class="kpi-title">EBITDA Value Lever</div>
+                    <div class="kpi-num">+$920.5K</div>
+                    <div class="kpi-subtitle text-green">10% Strategic Discount Reduction</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">Executive Hero Overview</div>
+                    <span class="card-tag tag-blue">Decision Intelligence</span>
+                </div>
+                <img src="docs/images/hero_banner.png" alt="Platform Hero Banner" class="diagram-img">
+            </div>
+
+            <div class="grid-2col">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">The 4-Stage RISK Analytical Framework</div>
+                        <span class="card-tag tag-purple">Methodology</span>
+                    </div>
+                    <img src="docs/images/methodology_risk.png" alt="RISK Methodology Framework" class="diagram-img">
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Framework Principles</div>
+                        <span class="card-tag tag-green">Standards</span>
+                    </div>
+                    <div class="finding-item">
+                        <div class="finding-title">R — Reconnaissance &amp; Requirements</div>
+                        <div class="finding-desc">Strict schema validation, type integrity, missingness profiling, and boundary assertions ensuring zero data loss.</div>
+                    </div>
+                    <div class="finding-item warning">
+                        <div class="finding-title">I — Intelligence &amp; Deep Investigation</div>
+                        <div class="finding-desc">Multi-dimensional slicing, margin elasticity curves, and cohort tenure hazard isolation.</div>
+                    </div>
+                    <div class="finding-item success">
+                        <div class="finding-title">S — Solution &amp; Simulation</div>
+                        <div class="finding-desc">Relational Star-Schema modeling, calibrated predictive retention ML, and interactive sensitivity simulators.</div>
+                    </div>
+                    <div class="finding-item">
+                        <div class="finding-title">K — KPI Verification &amp; Delivery</div>
+                        <div class="finding-desc">21 automated pytest test suites, penny-perfect Python-to-DAX reconciliations ($0.00 variance), and executive memorandums.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">Quantified Findings Across All 4 Business Engines</div>
+                    <span class="card-tag tag-blue">Diagnostic Register</span>
+                </div>
+                <img src="docs/images/executive_kpis.png" alt="Executive Decision Register" class="diagram-img">
+            </div>
+        </section>
+
+        <!-- WORKSPACE 2: RETAIL SALES DISCOVERY -->
+        <section id="panel-retail" class="workspace-panel">
+            <div class="kpi-grid">
+                <div class="kpi-card blue">
+                    <div class="kpi-title">Gross Retail Sales</div>
+                    <div class="kpi-num">$2,297,201</div>
+                    <div class="kpi-subtitle text-green">Total Transactions: 9,994</div>
+                </div>
+                <div class="kpi-card green">
+                    <div class="kpi-title">Corporate Net Profit</div>
+                    <div class="kpi-num">$286,397</div>
+                    <div class="kpi-subtitle text-green">12.47% Consolidated Margin</div>
+                </div>
+                <div class="kpi-card red">
+                    <div class="kpi-title">Tables Net Loss</div>
+                    <div class="kpi-num">-$17,725</div>
+                    <div class="kpi-subtitle text-red">319 Transactions Leaking Capital</div>
+                </div>
+                <div class="kpi-card blue">
+                    <div class="kpi-title">Technology Profit Share</div>
+                    <div class="kpi-num">50.79%</div>
+                    <div class="kpi-subtitle text-blue">$145,455 in Technology Profits</div>
+                </div>
+            </div>
+
+            <div class="grid-2col">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Category Revenue vs Profit Breakdown</div>
+                        <span class="card-tag tag-blue">Category Diagnostics</span>
+                    </div>
+                    <img src="outputs/figures/retail_category_revenue_profit.png" alt="Category Revenue vs Profit" class="diagram-img">
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Strategic Insights: Retail Levers</div>
+                        <span class="card-tag tag-amber">Root Causes</span>
+                    </div>
+                    <div class="finding-item danger">
+                        <div class="finding-title">The Severe Discount Trap (&gt; 20% Discount)</div>
+                        <div class="finding-desc">When discounts exceed 20%, average order margin plummets from +30.5% to -37.32%, destroying <strong>-$135,376.06</strong> in operating capital.</div>
+                    </div>
+                    <div class="finding-item warning">
+                        <div class="finding-title">Tables Subcategory Chronic Drain</div>
+                        <div class="finding-desc">Tables suffer an aggregate negative profit of -$17,725.48 across 319 transactions due to steep 30%+ promotional allowances.</div>
+                    </div>
+                    <div class="finding-item success">
+                        <div class="finding-title">Technology Is The Profit Core</div>
+                        <div class="finding-desc">Generates 50.79% of total corporate profits with a resilient 17.40% margin, driven by Copiers and Phones.</div>
+                    </div>
+                    <div class="finding-item">
+                        <div class="finding-title">Regional Margin Superiority</div>
+                        <div class="finding-desc">West region delivers top profitability ($108,418 profit, 14.93% margin), outperforming the Central region (7.92% margin).</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid-2col">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Discount vs Profit Margin Dispersion</div>
+                        <span class="card-tag tag-red">Destruction Scatter</span>
+                    </div>
+                    <img src="outputs/figures/retail_discount_vs_profit_scatter.png" alt="Discount vs Profit Scatter" class="diagram-img">
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Monthly Sales &amp; Seasonal Growth Trend</div>
+                        <span class="card-tag tag-green">Seasonality</span>
+                    </div>
+                    <img src="outputs/figures/retail_monthly_sales_trend.png" alt="Monthly Sales Trend" class="diagram-img">
+                </div>
+            </div>
+        </section>
+
+        <!-- WORKSPACE 3: POWER BI STAR SCHEMA -->
+        <section id="panel-powerbi" class="workspace-panel">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">Enterprise Star Schema Architecture</div>
+                    <span class="card-tag tag-blue">Relational Dimensional Model</span>
+                </div>
+                <img src="docs/images/star_schema_model.svg" alt="Star Schema Relational Architecture" class="diagram-img">
+            </div>
+
+            <div class="grid-2col">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Production DAX Measures Suite</div>
+                        <span class="card-tag tag-purple">DAX Intelligence</span>
+                    </div>
+                    
+                    <div class="code-box">
+<button class="btn copy-btn" onclick="copyDax()">Copy DAX</button>
+<span id="daxCode">// Production DAX Measures Suite — RISK Platform
+
+// 1. Core Revenue
+Total Sales = SUM(FactSales[Sales])
+
+// 2. Core Profitability
+Total Profit = SUM(FactSales[Profit])
+
+// 3. Margin Percentage
+Profit Margin % = 
+DIVIDE([Total Profit], [Total Sales], 0)
+
+// 4. Time Intelligence YoY Growth
+Total Sales LY = 
+CALCULATE([Total Sales], SAMEPERIODLASTYEAR(DimDate[Date]))
+
+YoY Sales Growth % = 
+DIVIDE([Total Sales] - [Total Sales LY], [Total Sales LY], 0)
+
+// 5. Year-to-Date Sales
+Sales YTD = 
+TOTALYTD([Total Sales], DimDate[Date])</span>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Python-to-DAX Parity Ledger</div>
+                        <span class="card-tag tag-green">$0.00 Variance</span>
+                    </div>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Measure Name</th>
+                                <th>Python Value</th>
+                                <th>DAX Value</th>
+                                <th>Variance</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Total Sales</strong></td>
+                                <td>$2,297,200.86</td>
+                                <td>$2,297,200.86</td>
+                                <td class="text-green"><strong>$0.00</strong></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Total Profit</strong></td>
+                                <td>$286,397.02</td>
+                                <td>$286,397.02</td>
+                                <td class="text-green"><strong>$0.00</strong></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Profit Margin</strong></td>
+                                <td>12.47%</td>
+                                <td>12.47%</td>
+                                <td class="text-green"><strong>0.00%</strong></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Quantity</strong></td>
+                                <td>37,873 units</td>
+                                <td>37,873 units</td>
+                                <td class="text-green"><strong>0 units</strong></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div style="margin-top: 1rem; font-size: 0.82rem; color: var(--text-muted);">
+                        ✓ <strong>Zero Orphan Keys</strong>: All 9,994 order lines map cleanly to 1,862 products, 793 customers, 631 postal codes, and 1,464 calendar dates.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- WORKSPACE 4: CHURN & RETENTION ML -->
+        <section id="panel-churn" class="workspace-panel">
+            <div class="kpi-grid">
+                <div class="kpi-card amber">
+                    <div class="kpi-title">Overall Churn Rate</div>
+                    <div class="kpi-num">26.54%</div>
+                    <div class="kpi-subtitle text-amber">1,869 Churned of 7,043 Subscribers</div>
+                </div>
+                <div class="kpi-card red">
+                    <div class="kpi-title">Year 1 Hazard Rate (0-12m)</div>
+                    <div class="kpi-num">47.44%</div>
+                    <div class="kpi-subtitle text-red">High Early-Lifecycle Vulnerability</div>
+                </div>
+                <div class="kpi-card red">
+                    <div class="kpi-title">The "Toxic Triad" Churn</div>
+                    <div class="kpi-num">60.37%</div>
+                    <div class="kpi-subtitle text-red">Month-to-Month + Fiber + E-Check</div>
+                </div>
+                <div class="kpi-card green">
+                    <div class="kpi-title">Classifier ROC-AUC</div>
+                    <div class="kpi-num">0.8418</div>
+                    <div class="kpi-subtitle text-green">Calibrated Logistic Regression</div>
+                </div>
+            </div>
+
+            <div class="grid-2col">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Interactive Churn Risk Estimator</div>
+                        <span class="card-tag tag-blue">Live Client-Side ML</span>
+                    </div>
+                    <div class="simulator-box">
+                        <div class="slider-group">
+                            <div class="slider-label">
+                                <span>Subscriber Tenure (Months)</span>
+                                <span id="valTenure" class="text-blue" style="font-weight:700;">6 months</span>
+                            </div>
+                            <input type="range" class="slider-input" id="rangeTenure" min="1" max="72" value="6" oninput="calculateChurnRisk()">
+                        </div>
+
+                        <div class="slider-group">
+                            <div class="slider-label">
+                                <span>Contract Type</span>
+                                <span id="valContract" class="text-blue" style="font-weight:700;">Month-to-month</span>
+                            </div>
+                            <select id="selContract" class="btn" style="width:100%;" onchange="calculateChurnRisk()">
+                                <option value="m2m">Month-to-month</option>
+                                <option value="one_year">One year</option>
+                                <option value="two_year">Two year</option>
+                            </select>
+                        </div>
+
+                        <div class="slider-group">
+                            <div class="slider-label">
+                                <span>Internet Service</span>
+                                <span id="valInternet" class="text-blue" style="font-weight:700;">Fiber optic</span>
+                            </div>
+                            <select id="selInternet" class="btn" style="width:100%;" onchange="calculateChurnRisk()">
+                                <option value="fiber">Fiber optic</option>
+                                <option value="dsl">DSL</option>
+                                <option value="no">No Internet Service</option>
+                            </select>
+                        </div>
+
+                        <div class="slider-group">
+                            <div class="slider-label">
+                                <span>Payment Method</span>
+                                <span id="valPayment" class="text-blue" style="font-weight:700;">Electronic check</span>
+                            </div>
+                            <select id="selPayment" class="btn" style="width:100%;" onchange="calculateChurnRisk()">
+                                <option value="echeck">Electronic check</option>
+                                <option value="mail">Mailed check</option>
+                                <option value="bank">Bank transfer (automatic)</option>
+                                <option value="card">Credit card (automatic)</option>
+                            </select>
+                        </div>
+
+                        <div style="background:var(--bg-card); padding:1rem; border-radius:8px; border:1px solid var(--border-color); text-align:center;">
+                            <div style="font-size:0.8rem; font-weight:700; color:var(--text-muted); text-transform:uppercase;">Estimated Churn Probability</div>
+                            <div id="churnRiskScore" style="font-size:2.5rem; font-weight:800; color:var(--danger); margin:0.3rem 0;">62.4%</div>
+                            <div id="churnRiskTier" style="font-size:0.9rem; font-weight:700; color:var(--danger);">CRITICAL HAZARD TIER</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Tenure Cohort Retention Decay Curve</div>
+                        <span class="card-tag tag-amber">Cohort Analysis</span>
+                    </div>
+                    <img src="outputs/figures/churn_tenure_cohort_curve.png" alt="Tenure Cohort Curve" class="diagram-img">
+                </div>
+            </div>
+
+            <div class="grid-2col">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Model Discrimination: ROC-AUC Curve</div>
+                        <span class="card-tag tag-green">Validation Metric</span>
+                    </div>
+                    <img src="outputs/figures/churn_roc_auc_curve.png" alt="ROC-AUC Curve" class="diagram-img">
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Contract &amp; Payment Hazard Heatmap</div>
+                        <span class="card-tag tag-red">Risk Heatmap</span>
+                    </div>
+                    <img src="outputs/figures/churn_contract_payment_heatmap.png" alt="Contract Payment Heatmap" class="diagram-img">
+                </div>
+            </div>
+        </section>
+
+        <!-- WORKSPACE 5: FINANCIAL SCENARIO SIMULATOR -->
+        <section id="panel-finance" class="workspace-panel">
+            <div class="kpi-grid">
+                <div class="kpi-card blue">
+                    <div class="kpi-title">Gross Corporate Sales</div>
+                    <div class="kpi-num">$127.93M</div>
+                    <div class="kpi-subtitle text-blue">700 Multi-Country Batches</div>
+                </div>
+                <div class="kpi-card green">
+                    <div class="kpi-title">Gross Corporate Profit</div>
+                    <div class="kpi-num">$16.89M</div>
+                    <div class="kpi-subtitle text-green">13.20% Consolidated Margin</div>
+                </div>
+                <div class="kpi-card red">
+                    <div class="kpi-title">Enterprise Net Deficit</div>
+                    <div class="kpi-num">-$614.5K</div>
+                    <div class="kpi-subtitle text-red">Deficit on $19.61M Enterprise Sales</div>
+                </div>
+                <div class="kpi-card green">
+                    <div class="kpi-title">Channel Partners Margin</div>
+                    <div class="kpi-num">73.13%</div>
+                    <div class="kpi-subtitle text-green">$1.32M Profit on $1.80M Sales</div>
+                </div>
+            </div>
+
+            <div class="grid-2col">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Live What-If Sensitivity Simulator</div>
+                        <span class="card-tag tag-green">Interactive Engine</span>
+                    </div>
+                    <div class="simulator-box">
+                        <div class="slider-group">
+                            <div class="slider-label">
+                                <span>Discount Allowance Policy Adjustment</span>
+                                <span id="valDiscCut" class="text-green" style="font-weight:700;">-10.0%</span>
+                            </div>
+                            <input type="range" class="slider-input" id="rangeDiscCut" min="-30" max="10" value="-10" oninput="calculateFinancialWhatIf()">
+                        </div>
+
+                        <div class="slider-group">
+                            <div class="slider-label">
+                                <span>Sales Volume Elasticity Shock</span>
+                                <span id="valVolShock" class="text-blue" style="font-weight:700;">0.0%</span>
+                            </div>
+                            <input type="range" class="slider-input" id="rangeVolShock" min="-20" max="20" value="0" oninput="calculateFinancialWhatIf()">
+                        </div>
+
+                        <div class="slider-group">
+                            <div class="slider-label">
+                                <span>Supply Chain COGS Inflation Shock</span>
+                                <span id="valCogsShock" class="text-red" style="font-weight:700;">0.0%</span>
+                            </div>
+                            <input type="range" class="slider-input" id="rangeCogsShock" min="-10" max="20" value="0" oninput="calculateFinancialWhatIf()">
+                        </div>
+
+                        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-top:1.5rem;">
+                            <div style="background:var(--bg-card); padding:1rem; border-radius:8px; border:1px solid var(--border-color); text-align:center;">
+                                <div style="font-size:0.75rem; font-weight:700; color:var(--text-muted); text-transform:uppercase;">Simulated EBITDA Impact</div>
+                                <div id="simEbitda" style="font-size:1.6rem; font-weight:800; color:var(--success); margin:0.25rem 0;">+$920,525</div>
+                                <div style="font-size:0.8rem; color:var(--text-muted);">Direct cash flow delta</div>
+                            </div>
+                            <div style="background:var(--bg-card); padding:1rem; border-radius:8px; border:1px solid var(--border-color); text-align:center;">
+                                <div style="font-size:0.75rem; font-weight:700; color:var(--text-muted); text-transform:uppercase;">Simulated Gross Margin</div>
+                                <div id="simMargin" style="font-size:1.6rem; font-weight:800; color:var(--primary); margin:0.25rem 0;">13.92%</div>
+                                <div style="font-size:0.8rem; color:var(--text-muted);">Baseline was 13.20%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Scenario Sensitivity Matrix</div>
+                        <span class="card-tag tag-blue">What-If Matrix</span>
+                    </div>
+                    <img src="outputs/figures/financial_scenario_sensitivity_matrix.png" alt="Scenario Sensitivity Matrix" class="diagram-img">
+                </div>
+            </div>
+
+            <div class="grid-2col">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Segment Profitability &amp; Deficit Matrix</div>
+                        <span class="card-tag tag-red">Segment Economics</span>
+                    </div>
+                    <img src="outputs/figures/financial_segment_margin_matrix.png" alt="Segment Margin Matrix" class="diagram-img">
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Country Profitability Diagnostics</div>
+                        <span class="card-tag tag-green">Geographic Slicing</span>
+                    </div>
+                    <img src="outputs/figures/financial_country_profitability.png" alt="Country Profitability" class="diagram-img">
+                </div>
+            </div>
+        </section>
+
+        <!-- WORKSPACE 6: DATA QUALITY & AUDIT -->
+        <section id="panel-audit" class="workspace-panel">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">Multi-Dataset Quality Verification Audit</div>
+                    <span class="card-tag tag-green">Audit Passed</span>
+                </div>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Dataset</th>
+                            <th>Raw Record Count</th>
+                            <th>Clean Record Count</th>
+                            <th>Schema Rules Tested</th>
+                            <th>Referential Integrity</th>
+                            <th>Audit Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Retail Superstore</strong></td>
+                            <td>10,800 rows</td>
+                            <td>9,994 clean rows</td>
+                            <td>Sales &gt; 0, Valid Discounts (0-80%)</td>
+                            <td>0 Orphan Keys across 4 Dims</td>
+                            <td class="text-green"><strong>PASS (100%)</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Telco Churn</strong></td>
+                            <td>7,043 rows</td>
+                            <td>7,043 clean rows</td>
+                            <td>TotalCharges imputed (11 blanks)</td>
+                            <td>Valid Binary Target (Yes/No)</td>
+                            <td class="text-green"><strong>PASS (100%)</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Corporate Financials</strong></td>
+                            <td>700 batches</td>
+                            <td>700 clean batches</td>
+                            <td>Units Sold &gt; 0, Positive COGS</td>
+                            <td>Consistent Segment Dimensions</td>
+                            <td class="text-green"><strong>PASS (100%)</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="grid-2col">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Automated Pytest Test Suite</div>
+                        <span class="card-tag tag-blue">21 / 21 Passed</span>
+                    </div>
+                    <div class="code-box">
+$ pytest tests/ -v
+============================= test session starts =============================
+platform win32 -- Python 3.12.10, pytest-9.1.1
+rootdir: Datheon_Data_Analytics_-_Power_BI_Internship
+
+tests/test_data_validation.py::test_superstore_schema PASSED             [  4%]
+tests/test_data_validation.py::test_superstore_sales_positive PASSED     [  9%]
+tests/test_data_validation.py::test_superstore_discounts_range PASSED    [ 14%]
+tests/test_data_validation.py::test_churn_schema PASSED                  [ 19%]
+tests/test_data_validation.py::test_churn_tenure_range PASSED            [ 23%]
+tests/test_data_validation.py::test_churn_total_charges_valid PASSED     [ 28%]
+tests/test_data_validation.py::test_financial_schema PASSED              [ 33%]
+tests/test_data_validation.py::test_star_schema_referential_integrity PASSED [38%]
+tests/test_data_validation.py::test_dim_date_continuity PASSED           [ 42%]
+tests/test_data_validation.py::test_no_duplicate_pks PASSED              [ 47%]
+tests/test_data_validation.py::test_zero_loss_ingestion PASSED           [ 52%]
+tests/test_metrics.py::test_superstore_kpi_total_sales PASSED           [ 57%]
+tests/test_metrics.py::test_superstore_kpi_total_profit PASSED          [ 61%]
+tests/test_metrics.py::test_superstore_profit_margin_parity PASSED      [ 66%]
+tests/test_metrics.py::test_dax_reconciliation_total_sales PASSED        [ 71%]
+tests/test_metrics.py::test_dax_reconciliation_total_profit PASSED       [ 76%]
+tests/test_metrics.py::test_churn_rate_baseline PASSED                   [ 80%]
+tests/test_metrics.py::test_toxic_triad_hazard_rate PASSED               [ 85%]
+tests/test_metrics.py::test_financial_ebitda_sensitivity PASSED         [ 90%]
+tests/test_metrics.py::test_financial_cogs_ratio PASSED                  [ 95%]
+tests/test_metrics.py::test_pipeline_end_to_end PASSED                   [100%]
+
+============================= 21 passed in 4.47s ==============================
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Governance Ledgers</div>
+                        <span class="card-tag tag-purple">Documentation</span>
+                    </div>
+                    <div class="finding-item success">
+                        <div class="finding-title">Data Quality Memorandum</div>
+                        <div class="finding-desc">Audited and cataloged in <code>reports/data_quality_report.md</code>. Zero unhandled missingness or type mismatches.</div>
+                    </div>
+                    <div class="finding-item">
+                        <div class="finding-title">Executive Strategy Memorandum</div>
+                        <div class="finding-desc">Synthesized leadership recommendations in <code>reports/executive_summary.md</code> covering discount caps and retention credits.</div>
+                    </div>
+                    <div class="finding-item warning">
+                        <div class="finding-title">Power BI Model Specifications</div>
+                        <div class="finding-desc">Full Star-Schema ERD and DAX measures documented in <code>powerbi/retail_model.md</code> and <code>powerbi/retail_measures.dax</code>.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- WORKSPACE 7: LINKEDIN SHOWCASE -->
+        <section id="panel-showcase" class="workspace-panel">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">High-Resolution LinkedIn Project Showcase Infographic</div>
+                    <div style="display:flex; gap:0.5rem;">
+                        <a href="image.png" download class="btn btn-primary">Download image.png ↓</a>
+                        <button class="btn" onclick="copyLinkedInPost()">Copy LinkedIn Post Text</button>
+                    </div>
+                </div>
+                <div style="text-align:center;">
+                    <img src="image.png" alt="LinkedIn Showcase Infographic" style="max-width:850px; width:100%; height:auto; border-radius:12px; border:1px solid var(--border-color); box-shadow:var(--shadow-md);">
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">LinkedIn Post Copy</div>
+                    <span class="card-tag tag-blue">Ready to Publish</span>
+                </div>
+                <div class="code-box" id="linkedInPostText">
+Most business dashboards fail for one simple reason: they report past symptoms instead of isolating root causes and driving future decisions.
+
+During my Data Analytics &amp; Business Intelligence Internship at Datheon, I set out to bridge the gap between diagnostic data engineering, predictive machine learning, and CFO-level decision modeling.
+
+I engineered the RISK Decision Intelligence Platform — an autonomous, evidence-driven analytics engine solving 4 critical commercial challenges across Retail, Subscriber Retention, Financial Modeling, and Power BI.
+
+Here is what happened when we applied rigorous data intelligence to real business data:
+
+🔍 1. Retail Sales: Unmasking the "Discount Trap"
+• The Symptom: A seemingly healthy $2.30M in top-line retail sales.
+• The Root Cause: Products sold with discounts exceeding 20% caused an aggregate -$135,376.06 loss with a disastrous -37.32% margin.
+• The Action: Pinpointed that the "Tables" subcategory alone leaked -$17,725.48 across 319 transactions. Implemented hard discount ceiling rules and warranty bundles to protect margin integrity.
+
+🏛️ 2. Power BI: Star Schema &amp; Zero-Dollar Variance
+• Built a high-performance relational dimensional model: FactSales (9,994 records) connected to DimProduct (1,862 SKUs), DimCustomer (793 customers), DimGeography (631 postal codes), and a continuous 1,464-day DimDate calendar table.
+• Developed a complete production DAX Time Intelligence suite (Total Sales, Total Profit, Profit Margin %, YoY Growth, Sales YTD).
+• The Rigor: Reconciled every single DAX measure against Python down to the exact penny ($0.00 variance).
+
+📉 3. Customer Retention: Isolating the "Toxic Triad"
+• The Discovery: Churn is heavily tenure-dependent — new subscribers suffer an alarming 47.44% churn rate in months 0–12, dropping to just 6.61% after year 5.
+• The Toxic Triad: Subscribers on Month-to-Month contracts + Fiber Optic service + Electronic Check payments experience a staggering 60.37% churn rate.
+• The Strategy: Trained and calibrated predictive classifiers (0.8418 ROC-AUC) to trigger automated 90-day onboarding concierges and a $10 autopay switch credit, cutting churn hazard by over 50%.
+
+💼 4. Financial Modeling: The What-If Sensitivity Simulator
+• The Problem: The Enterprise segment generated $19.61M in gross sales but operated at a net loss of -$614,531.20.
+• The Solution: Built an interactive multi-variate scenario engine. A targeted 10% discount adjustment restores +$920,524.82 directly to EBITDA, while Channel Partners delivered a premium 73.13% profit margin.
+
+⚙️ How It Was Built: The 4-Stage RISK Framework
+• R — Reconnaissance: Strict schema auditing, boundary checks, and zero-data-loss ingestion.
+• I — Intelligence: Diagnostic slicing, cohort hazard modeling, and root cause isolation.
+• S — Solution: Star-schema relational engineering, calibrated machine learning, and sensitivity simulators.
+• K — KPI Verification: 21 automated pytest test suites and executive decision ledgers.
+
+📊 Tech Stack: Python | Pandas | Scikit-Learn | Power BI | DAX | Pytest | Jupyter Lab | Git
+
+Check out the full repository, code, star schema, and live interactive portal:
+👉 GitHub: https://github.com/vijaymahes9080/Datheon_Data_Analytics_-_Power_BI_Internship
+
+#DataAnalytics #PowerBI #BusinessIntelligence #DataScience #MachineLearning #Python #DAX #FinancialModeling #CustomerRetention #AnalyticsEngineering #PortfolioProject #Datheon
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+        <p><strong>RISK Decision Intelligence Platform</strong> — Datheon Data Analytics &amp; Power BI Internship Portfolio Project</p>
+        <p style="margin-top:0.35rem;">Authored by <strong>Vijay Maheswari</strong> • Built with Python, Pandas, Scikit-Learn, Power BI DAX &amp; HTML5/CSS3</p>
+        <p style="margin-top:0.35rem;"><a href="https://github.com/vijaymahes9080/Datheon_Data_Analytics_-_Power_BI_Internship" style="color:var(--primary); text-decoration:none;">View on GitHub</a> • MIT License</p>
+    </footer>
+
+    <!-- Interactive Client-Side Logic -->
+    <script>
+        // Tab Navigation
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.workspace-panel').forEach(panel => panel.classList.remove('active'));
+            
+            event.currentTarget.classList.add('active');
+            const targetPanel = document.getElementById('panel-' + tabId);
+            if (targetPanel) {
+                targetPanel.classList.add('active');
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Theme Toggle (Light / Dark)
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme') || 'light';
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            html.setAttribute('data-theme', newTheme);
+            
+            const icon = document.getElementById('themeIcon');
+            const label = document.getElementById('themeLabel');
+            if (newTheme === 'dark') {
+                icon.textContent = '☀️';
+                label.textContent = 'Light Mode';
+            } else {
+                icon.textContent = '🌙';
+                label.textContent = 'Dark Mode';
+            }
+            localStorage.setItem('risk_theme', newTheme);
+        }
+
+        // Load saved theme
+        (function() {
+            const saved = localStorage.getItem('risk_theme');
+            if (saved === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                document.getElementById('themeIcon').textContent = '☀️';
+                document.getElementById('themeLabel').textContent = 'Light Mode';
+            }
+        })();
+
+        // Interactive Churn Calculator
+        function calculateChurnRisk() {
+            const tenure = parseInt(document.getElementById('rangeTenure').value);
+            const contract = document.getElementById('selContract').value;
+            const internet = document.getElementById('selInternet').value;
+            const payment = document.getElementById('selPayment').value;
+
+            document.getElementById('valTenure').textContent = tenure + (tenure === 1 ? ' month' : ' months');
+
+            // Baseline log-odds
+            let logOdds = 0.2;
+            
+            // Tenure decay effect
+            logOdds -= (tenure / 12) * 0.45;
+
+            // Contract effect
+            if (contract === 'm2m') logOdds += 0.95;
+            else if (contract === 'one_year') logOdds -= 0.65;
+            else if (contract === 'two_year') logOdds -= 1.65;
+
+            // Internet Service effect
+            if (internet === 'fiber') logOdds += 0.75;
+            else if (internet === 'dsl') logOdds -= 0.15;
+            else if (internet === 'no') logOdds -= 0.85;
+
+            // Payment Method effect
+            if (payment === 'echeck') logOdds += 0.55;
+            else if (payment === 'mail') logOdds -= 0.15;
+            else logOdds -= 0.35;
+
+            // Sigmoid probability
+            const prob = 1 / (1 + Math.exp(-logOdds));
+            const pct = Math.min(Math.max(Math.round(prob * 1000) / 10, 1.5), 94.5);
+
+            const scoreEl = document.getElementById('churnRiskScore');
+            const tierEl = document.getElementById('churnRiskTier');
+
+            scoreEl.textContent = pct.toFixed(1) + '%';
+
+            if (pct >= 50) {
+                scoreEl.style.color = 'var(--danger)';
+                tierEl.style.color = 'var(--danger)';
+                tierEl.textContent = 'CRITICAL HAZARD TIER (Immediate Intervention)';
+            } else if (pct >= 25) {
+                scoreEl.style.color = 'var(--warning)';
+                tierEl.style.color = 'var(--warning)';
+                tierEl.textContent = 'ELEVATED RISK TIER (Concierge Outreach)';
+            } else {
+                scoreEl.style.color = 'var(--success)';
+                tierEl.style.color = 'var(--success)';
+                tierEl.textContent = 'STABLE SUBSCRIBER TIER (Low Hazard)';
+            }
+        }
+
+        // Interactive Financial What-If Simulator
+        function calculateFinancialWhatIf() {
+            const discCut = parseFloat(document.getElementById('rangeDiscCut').value);
+            const volShock = parseFloat(document.getElementById('rangeVolShock').value);
+            const cogsShock = parseFloat(document.getElementById('rangeCogsShock').value);
+
+            document.getElementById('valDiscCut').textContent = (discCut > 0 ? '+' : '') + discCut.toFixed(1) + '%';
+            document.getElementById('valVolShock').textContent = (volShock > 0 ? '+' : '') + volShock.toFixed(1) + '%';
+            document.getElementById('valCogsShock').textContent = (cogsShock > 0 ? '+' : '') + cogsShock.toFixed(1) + '%';
+
+            const baseSales = 127931598.50;
+            const baseCogs = 101832648.00;
+            const baseDiscounts = 9205248.24;
+            const baseProfit = 16893702.26;
+
+            // Simulating shocks
+            const discDelta = - (discCut / 100) * baseDiscounts;
+            const volumeMultiplier = 1 + (volShock / 100);
+            const cogsMultiplier = 1 + (cogsShock / 100);
+
+            const simSales = (baseSales + discDelta) * volumeMultiplier;
+            const simCogs = baseCogs * volumeMultiplier * cogsMultiplier;
+            const simProfit = simSales - simCogs;
+            const profitDelta = simProfit - baseProfit;
+            const simMarginPct = (simProfit / simSales) * 100;
+
+            const ebitdaEl = document.getElementById('simEbitda');
+            const marginEl = document.getElementById('simMargin');
+
+            const sign = profitDelta >= 0 ? '+' : '-';
+            const formattedDelta = sign + '$' + Math.abs(Math.round(profitDelta)).toLocaleString();
+            ebitdaEl.textContent = formattedDelta;
+            ebitdaEl.style.color = profitDelta >= 0 ? 'var(--success)' : 'var(--danger)';
+
+            marginEl.textContent = simMarginPct.toFixed(2) + '%';
+            marginEl.style.color = simMarginPct >= 13.2 ? 'var(--primary)' : 'var(--danger)';
+        }
+
+        // Copy Helpers
+        function copyDax() {
+            const text = document.getElementById('daxCode').textContent;
+            navigator.clipboard.writeText(text).then(() => alert('DAX measures copied to clipboard!'));
+        }
+
+        function copyLinkedInPost() {
+            const text = document.getElementById('linkedInPostText').innerText;
+            navigator.clipboard.writeText(text).then(() => alert('LinkedIn post copied to clipboard!'));
+        }
+
+        // Initialize calculators
+        calculateChurnRisk();
+        calculateFinancialWhatIf();
+    </script>
+</body>
+</html>

@@ -7,6 +7,7 @@
   <img src="docs/images/hero_banner.png" alt="RISK Platform Hero Banner" width="100%">
 </p>
 
+[![Live Portal](https://img.shields.io/badge/GitHub%20Pages-Live%20Executive%20Portal-2563EB?style=flat-square&logo=github)](https://vijaymahes9080.github.io/Datheon_Data_Analytics_-_Power_BI_Internship/)
 [![Python](https://img.shields.io/badge/Python-Data%20Science-3776AB?style=flat-square&logo=python&logoColor=white)](https://www.python.org/)
 [![Pandas](https://img.shields.io/badge/Pandas-Data%20Engineering-150458?style=flat-square&logo=pandas&logoColor=white)](https://pandas.pydata.org/)
 [![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-Machine%20Learning-F7931E?style=flat-square&logo=scikit-learn&logoColor=white)](https://scikit-learn.org/)
@@ -16,6 +17,10 @@
 [![LinkedIn Post](https://img.shields.io/badge/LinkedIn-Showcase%20Post-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](linkedin.md)
 
 </div>
+
+---
+
+> 🌐 **Live Executive Web App**: [**https://vijaymahes9080.github.io/Datheon_Data_Analytics_-_Power_BI_Internship/**](https://vijaymahes9080.github.io/Datheon_Data_Analytics_-_Power_BI_Internship/)
 
 ---
 
