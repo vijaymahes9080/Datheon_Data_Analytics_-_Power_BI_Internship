@@ -1,0 +1,31 @@
+Feature,Coefficient,Abs_Impact,Direction
+tenure,-1.2365276450648994,1.2365276450648994,Increases Retention
+MonthlyCharges,-0.9201529350736295,0.9201529350736295,Increases Retention
+InternetService_Fiber optic,0.7761541026594923,0.7761541026594923,Increases Churn
+Contract_Two year,-0.5868593303468714,0.5868593303468714,Increases Retention
+TotalCharges,0.514284909726599,0.514284909726599,Increases Churn
+Contract_One year,-0.28550860174084025,0.28550860174084025,Increases Retention
+StreamingMovies_Yes,0.25722658904389506,0.25722658904389506,Increases Churn
+StreamingTV_Yes,0.2571440785534466,0.2571440785534466,Increases Churn
+MultipleLines_Yes,0.21616694418197696,0.21616694418197696,Increases Churn
+PaperlessBilling_Yes,0.1820342676046012,0.1820342676046012,Increases Churn
+PaymentMethod_Electronic check,0.18110348035169987,0.18110348035169987,Increases Churn
+OnlineSecurity_Yes,-0.12356069816749272,0.12356069816749272,Increases Retention
+Dependents_Yes,-0.10355019262579357,0.10355019262579357,Increases Retention
+TechSupport_Yes,-0.10050155091356891,0.10050155091356891,Increases Retention
+DeviceProtection_No internet service,-0.09276107496996985,0.09276107496996985,Increases Retention
+StreamingMovies_No internet service,-0.09276107496996985,0.09276107496996985,Increases Retention
+StreamingTV_No internet service,-0.09276107496996985,0.09276107496996985,Increases Retention
+TechSupport_No internet service,-0.09276107496996985,0.09276107496996985,Increases Retention
+InternetService_No,-0.09276107496996985,0.09276107496996985,Increases Retention
+OnlineSecurity_No internet service,-0.09276107496996985,0.09276107496996985,Increases Retention
+OnlineBackup_No internet service,-0.09276107496996985,0.09276107496996985,Increases Retention
+SeniorCitizen,0.05307329198173054,0.05307329198173054,Increases Churn
+DeviceProtection_Yes,0.05304806373572972,0.05304806373572972,Increases Churn
+PaymentMethod_Mailed check,0.0322623245345616,0.0322623245345616,Increases Churn
+PaymentMethod_Credit card (automatic),-0.013039193589270082,0.013039193589270082,Increases Retention
+OnlineBackup_Yes,-0.012021940588413882,0.012021940588413882,Increases Retention
+gender_Male,0.011094359457936036,0.011094359457936036,Increases Churn
+Partner_Yes,0.01086633185582151,0.01086633185582151,Increases Churn
+PhoneService_Yes,0.006793776440897,0.006793776440897,Increases Churn
+MultipleLines_No phone service,-0.006793776440897,0.006793776440897,Increases Retention
